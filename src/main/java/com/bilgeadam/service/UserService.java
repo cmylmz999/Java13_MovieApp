@@ -78,14 +78,22 @@ public class UserService implements ICrudService<User, Long> {
                 .rePassword(rePassword)
                 .build();
         // " " -> isBlank = true, " " isEmpty = false
-        if (!password.equals(rePassword) || password.isBlank()) {
+        if (!password.equals(rePassword) || password.isBlank() ) {
             throw new RuntimeException("Sifreler ayni degildir.");
             /*
             Exception -> Checked -> Compile error. Derleme hatası.
             RuntimeException -> Unchecked -> Runtime error. Çalışma zamanı hatası. -> Program çalışırken gerçekleşir.
              */
-        } else {
+        } else if (findOptionalByEmailIgnoreCase(email).isPresent()) {
+            throw new RuntimeException("Bu email zaten kayıtlı.");
+
+        } else if (email.contains("ba.admin")){
+            registeredUser.setUserType(EUserType.ADMIN);
+            registeredUser.setStatus(EStatus.ACTIVE);
             return userRepository.save(registeredUser);
+        }
+        else {
+        return userRepository.save(registeredUser);
         }
     }
 
