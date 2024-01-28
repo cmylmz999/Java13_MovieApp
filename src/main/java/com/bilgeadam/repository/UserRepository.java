@@ -62,6 +62,22 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findUserByName(String name);
 
+    /**
+     * COMMIT 3
+     */
+
+    @Query(value = "SELECT * FROM users u WHERE LENGTH(u.password) > :length", nativeQuery = true)
+    List<User> findByPasswordLengthGreaterThan(@Param("length") int length);
+    @Query("SELECT u FROM User u WHERE LENGTH(u.password) > :length")
+    List<User> findByPasswordLengthGreaterThanJPQL(@Param("length") int length);
+    @Query(value = "SELECT * FROM users u WHERE u.email LIKE %:suffix", nativeQuery = true)
+    List<User> findByEmailSuffix(@Param("suffix") String suffix);
+    @Query("SELECT u FROM User u WHERE u.email LIKE %:suffix")
+    List<User> findByEmailSuffixJPQL(@Param("suffix") String suffix);
+
+
+
+
 
 
 }
