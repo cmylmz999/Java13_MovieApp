@@ -123,6 +123,9 @@ public class UserController {
         return ResponseEntity.ok(userService.findAllByEmailEndingWith(value));
     }
 
-
+    @GetMapping("/find-user-by-name")
+    public ResponseEntity<Optional<User>> findUserByName(String name){
+        return ResponseEntity.ok(userService.findUserByName(name));
+    }
 
 }

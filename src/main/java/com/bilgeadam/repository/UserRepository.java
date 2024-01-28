@@ -60,6 +60,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     //e-mailin sonu kullanıcının girdiği değerlere göre biten emailleri listeleyiniz.
     List<User> findAllByEmailEndingWith(String value);
 
+    Optional<User> findUserByName(String name);
+
 
 
 }

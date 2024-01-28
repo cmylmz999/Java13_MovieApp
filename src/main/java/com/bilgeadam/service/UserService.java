@@ -171,10 +171,18 @@ public class UserService implements ICrudService<User, Long> {
         return UserMapper.INSTANCE.fromUserToRegisterResponseDto(user);
     }
 
+    /**
+     * COMMIT 1 - THIS IS ALREADY MADE BY INSTRUCTOR.
+     */
     public List<User> findAllByOrderByName() {
         return userRepository.findAllByOrderByName();
     }
 
+    /**
+     * COMMIT 1 - THIS IS ALREADY MADE BY INSTRUCTOR.
+     * @param name
+     * @return
+     */
     public Boolean existsByNameContainsIgnoreCase(String name) {
         return userRepository.existsByNameContainsIgnoreCase(name);
     }
@@ -183,6 +191,11 @@ public class UserService implements ICrudService<User, Long> {
         return userRepository.findAllByNameContainingIgnoreCase(value);
     }
 
+    /**
+     * COMMIT 1 - THIS IS ALREADY MADE BY INSTRUCTOR.
+     * @param email
+     * @return
+     */
     public List<User> findByEmailIgnoreCase(String email) {
         return userRepository.findByEmailIgnoreCase(email);
     }
@@ -209,6 +222,10 @@ public class UserService implements ICrudService<User, Long> {
 
     public List<User> findAllByEmailEndingWith(String value) {
         return userRepository.findAllByEmailEndingWith(value);
+    }
+
+    public Optional<User> findUserByName(String name){
+        return userRepository.findUserByName(name);
     }
 
 }
